@@ -5,6 +5,7 @@ import com.akirajin.notification.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class NotificationRest {
     }
 
     @PostMapping
-    ResponseEntity<Object> addNotification(NotificationRequest notificationRequest) {
+    ResponseEntity<Object> addNotification(@RequestBody NotificationRequest notificationRequest) {
         notificationService.addNotification(notificationRequest.getCategory(), notificationRequest.getMessage());
         return ResponseEntity.ok().build();
     }

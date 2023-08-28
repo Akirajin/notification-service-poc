@@ -4,15 +4,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class LogHistory {
+    private String message;
     private LocalDateTime datetime;
     private User user;
     private Category category;
     private List<Channel> channel;
 
-    public LogHistory(LocalDateTime datetime, User user, List<Channel> channel) {
+    public LogHistory(LocalDateTime datetime, User user, List<Channel> channel, String message) {
         this.datetime = datetime;
         this.user = user;
         this.channel = channel;
+        this.message = message;
     }
 
     public Category getCategory() {
@@ -24,11 +26,12 @@ public class LogHistory {
         return this;
     }
 
-    public LogHistory(User user, Category category, List<Channel> channel) {
+    public LogHistory(User user, Category category, List<Channel> channel, String message) {
         this.datetime = LocalDateTime.now();
         this.category = category;
         this.user = user;
         this.channel = channel;
+        this.message = message;
     }
 
     public LocalDateTime getDatetime() {
@@ -51,6 +54,15 @@ public class LogHistory {
 
     public List<Channel> getChannel() {
         return channel;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public LogHistory setMessage(String message) {
+        this.message = message;
+        return this;
     }
 
     public LogHistory setChannel(List<Channel> channel) {

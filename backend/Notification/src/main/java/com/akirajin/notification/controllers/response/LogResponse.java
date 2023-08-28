@@ -9,9 +9,19 @@ import java.util.List;
 
 public class LogResponse {
     private LocalDateTime datetime;
-    private User user;
+    private String user;
     private List<Channel> channel;
     private Category category;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public LogResponse setMessage(String message) {
+        this.message = message;
+        return this;
+    }
 
     public LogResponse() {
     }
@@ -25,11 +35,11 @@ public class LogResponse {
         return this;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public LogResponse setUser(User user) {
+    public LogResponse setUser(String user) {
         this.user = user;
         return this;
     }

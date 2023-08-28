@@ -29,10 +29,11 @@ public class NotificationService {
     public void addNotification(Category category, String message) {
         databaseNotification.add(new Notification().setCategory(category).setDateTime(LocalDateTime.now()).setMessage(message));
         List<User> users = userService.listAllUser();
-        List<User> filteredUsers = users.stream().filter(u -> u.getChannels().contains(category)).collect(Collectors.toList());
+        List<User> filteredUsers = users.stream().filter(u -> u.getSubscribedCategories().contains(category)).collect(Collectors.toList());
 
         for (User user : filteredUsers) {
-            logService.addLog(user, category, user.getChannels());
+
+            logService.addLog(user, category, user.getChannels(), message);
         }
     }
 }

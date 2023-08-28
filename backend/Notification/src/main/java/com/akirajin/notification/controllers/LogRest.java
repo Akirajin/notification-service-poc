@@ -30,8 +30,9 @@ public class LogRest {
         List<LogResponse> history = allHistory.stream().map(h ->
                 new LogResponse()
                         .setDatetime(h.getDatetime())
-                        .setUser(h.getUser())
+                        .setUser(h.getUser().getName())
                         .setCategory(h.getCategory())
+                        .setMessage(h.getMessage())
                         .setChannel(h.getChannel())).collect(Collectors.toList());
 
         return ResponseEntity.ok().body(history).getBody();
