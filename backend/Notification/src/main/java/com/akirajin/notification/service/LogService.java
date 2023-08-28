@@ -20,4 +20,9 @@ public class LogService {
     public List<LogHistory> getAllLogs() {
         return databaseLogs;
     }
+
+    //    This method only exists because we don't have database mocked, usually, for every test, we clean up the mocked databaseLogs
+    public void resetLogs() {
+        databaseLogs = new ArrayList<>();
+    }
 }

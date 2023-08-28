@@ -1,13 +1,13 @@
 package com.akirajin.notification.controllers;
 
+import com.akirajin.notification.controllers.response.LogResponse;
 import com.akirajin.notification.entities.LogHistory;
 import com.akirajin.notification.service.LogService;
-import com.akirajin.notification.controllers.response.LogResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -36,6 +36,11 @@ public class LogRest {
                         .setChannel(h.getChannel())).collect(Collectors.toList());
 
         return ResponseEntity.ok().body(history).getBody();
+    }
+
+    @DeleteMapping
+    void resetLogs(){
+        logService.resetLogs();
     }
 
 }

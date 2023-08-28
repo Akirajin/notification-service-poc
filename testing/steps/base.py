@@ -1,4 +1,6 @@
+import requests
 from behave import given, when, then
+from deepdiff import DeepDiff
 
 from requests import Session
 import json
@@ -34,40 +36,21 @@ def step_impl(context, httpstatus):
 def step_impl(context):
     expected_categories = json.loads(context.text)
     actual_categories = json.loads(context.content)
-    assert compare_dictionaries(expected_categories, actual_categories, 'datetime')
+    assert compare_dictionaries(expected_categories, actual_categories,
+                                'datetime'), f'Expect: {expected_categories} but was Actual: {actual_categories}'
 
 
-def compare_dictionaries(list1, list2, excluded_field):
-    """
-    Compares two lists of dictionaries and returns True if they are equal, False otherwise.
+@step("the log is cleared")
+def step_impl(context):
+    requests.delete('http://localhost:8080/logs')
 
-    Args:
-      list1: The first list of dictionaries.
-      list2: The second list of dictionaries.
-      excluded_field: The name of the field to exclude from the comparison.
 
-    Returns:
-      True if the dictionaries are equal, False otherwise.
-    """
+def compare_dictionaries(json1, json2, ignore):
 
-    for dict1 in list1:
-        for dict2 in list2:
-            if dict1 == dict2:
-                continue
+    for i in json1:
+        i[ignore] = None
 
-            for key, value in dict1.items():
-                if key == excluded_field:
-                    continue
+    for i in json2:
+        i[ignore] = None
 
-                if key not in dict2 or value != dict2[key]:
-                    return False
-
-                if isinstance(value, list) and isinstance(dict2[key], list):
-                    if len(value) != len(dict2[key]):
-                        return False
-
-                    for v1, v2 in zip(value, dict2[key]):
-                        if v1 != v2:
-                            return False
-
-    return True
+    return len(DeepDiff(json1, json2, ignore_order=True)) == 0
