@@ -25,16 +25,6 @@ def step_impl(context):
 
 @then('the response body should be a JSON array with the following elements')
 def step_impl(context):
-    expected_categories = [
-        {
-            'name': 'Sports'
-        },
-        {
-            'name': 'Finance'
-        },
-        {
-            'name': 'Movies'
-        }
-    ]
+    expected_categories = json.loads(context.text)
     actual_categories = json.loads(context.content)
     assert actual_categories == expected_categories
