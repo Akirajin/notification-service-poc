@@ -1,0 +1,102 @@
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(#F21212, #912b46);
+}
+
+.title {
+    font-size: 70px;
+    color: aliceblue;
+    animation: fliptitle 2s;
+
+}
+
+@keyframes fliptitle {
+    from {
+        transform: rotateX(90deg);
+    }
+    to {
+        transform: rotateX(0deg);
+    }
+}
+
+.combobox{
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    margin: 34px 0;
+    display: flex;
+    border-radius: 8px;
+    box-shadow: 1px 3px 8px blue;
+
+}
+
+.containerInput {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    margin: 34px 0;
+    display: flex;
+    border-radius: 8px;
+    box-shadow: 1px 3px 8px blue;
+}
+
+.containerInput input {
+    background-color: transparent;
+    border: 0;
+    font-size: 20px;
+    color: black;
+    outline: none;
+    margin-right: 8px;
+    width: 500px;
+    height: 70px;
+}
+
+.containerInput input::placeholder {
+    color: white;
+}
+
+.buttonSubmit {
+    background-color: transparent;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.buttonSubmit:hover {
+    transform: scale(2);
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FFF;
+    width: 500px;
+    border-radius: 8px;
+}
+
+.main h2 {
+    margin: 16px 0;
+    font-size: 39px;
+}
+
+.main span{
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+/* Add this to your CSS */
+.notificationLogsContainer {
+    /* Your other container styles */
+}
+
+.logsScrollable {
+    max-height: 300px; /* Adjust the maximum height as needed */
+    overflow-y: auto;
+}

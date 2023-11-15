@@ -18,3 +18,4 @@ Feature: Get categories
         }
       ]
       """
+    
